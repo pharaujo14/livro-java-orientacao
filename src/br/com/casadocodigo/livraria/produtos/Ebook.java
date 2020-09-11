@@ -1,6 +1,8 @@
-package livraria;
+package br.com.casadocodigo.livraria.produtos;
 
-public class Ebook extends Livro {
+import br.com.casadocodigo.livraria.Autor;
+
+public class Ebook extends Livro implements Promocional{
 
 	private String waterMark;
 
@@ -22,7 +24,10 @@ public class Ebook extends Livro {
 			return false;
 		}
 		
-		return super.aplicaDescontoDe(porcentagem);
+		double desconto = getValor() * porcentagem;
+		setValor(getValor() - desconto);
+		System.out.println("Aplicando desconto no livro físico");
+		return true;
 
 	}
 

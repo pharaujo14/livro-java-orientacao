@@ -1,4 +1,9 @@
-package livraria;
+package br.com.casadocodigo.livraria.teste;
+
+import br.com.casadocodigo.livraria.Autor;
+import br.com.casadocodigo.livraria.produtos.CarrinhoDeCompras;
+import br.com.casadocodigo.livraria.produtos.Ebook;
+import br.com.casadocodigo.livraria.produtos.LivroFisico;
 
 public class RegistroDeVendas {
 	public static void main(String[] args) {
@@ -9,6 +14,10 @@ public class RegistroDeVendas {
 		LivroFisico fisico = new LivroFisico(autor);
 		fisico.setNome("Test-Driven Development");
 		fisico.setValor(59.90);
+		
+		if (fisico.aplicaDescontoDe10Porcento()) {
+			System.out.println("O valor agora é de: " + fisico.getValor());
+		}
 		
 		Ebook ebook = new Ebook(autor);
 		ebook.setNome("Test-Driven Development");

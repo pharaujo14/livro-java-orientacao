@@ -1,6 +1,8 @@
-package livraria;
+package br.com.casadocodigo.livraria.produtos;
 
-public abstract class Livro {
+import br.com.casadocodigo.livraria.Autor;
+
+public abstract class Livro implements Produto{
 
 	private String nome;
 	private String descricao;
@@ -70,7 +72,5 @@ public abstract class Livro {
 		System.out.println("-------------------");
 
 	}
-	
-	public abstract boolean aplicaDescontoDe(double porcentagem);
 
 }
