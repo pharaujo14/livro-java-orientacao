@@ -28,6 +28,8 @@ public class RegistroDeVendas {
 		carrinho.adiciona(ebook);
 		
 		System.out.println("Total: " + carrinho.getTotal());
+		
+		carrinho.getProdutos();
 	}
 
 }
