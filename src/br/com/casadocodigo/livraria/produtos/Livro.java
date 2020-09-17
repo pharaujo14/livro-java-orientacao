@@ -1,8 +1,9 @@
 package br.com.casadocodigo.livraria.produtos;
 
 import br.com.casadocodigo.livraria.Autor;
+import br.com.casadocodigo.livraria.exception.AutorNuloException;
 
-public abstract class Livro implements Produto{
+public abstract class Livro implements Produto {
 
 	private String nome;
 	private String descricao;
@@ -11,7 +12,13 @@ public abstract class Livro implements Produto{
 	private Autor autor;
 
 	public Livro(Autor autor) {
+
+		if (autor == null) {
+			throw new AutorNuloException("O Autor do livro não pode ser nulo");
+		}
+
 		this.autor = autor;
+		this.isbn = "000-00-00000-00-0";
 	}
 
 	public String getNome() {
@@ -58,19 +65,34 @@ public abstract class Livro implements Produto{
 		return this.autor != null;
 	}
 
-	public void mostrarDetalhes() {
-		System.out.println("Monstrando detalhes do livro:");
-		System.out.println("Nome: " + nome);
-		System.out.println("Descrição: " + descricao);
-		System.out.println("Valor: " + valor);
-		System.out.println("ISBN: " + isbn);
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Monstrando detalhes do livro: \n");
+		sb.append("Nome: " + nome + "\n");
+		sb.append("Descrição: " + descricao + "\n");
+		sb.append("Valor: " + valor + "\n");
+		sb.append("ISBN: " + isbn + "\n");
 
 		if (this.temAutor()) {
-			autor.mostrarDetalhes();
+			sb.append(autor.toString());
 		}
 
-		System.out.println("-------------------");
+		sb.append("-------------------");
+		return sb.toString();
+	}
 
+	@Override
+	public int compareTo(Produto outro) {
+		if (this.getValor() < outro.getValor()) {
+			return -1;
+		}
+
+		if (this.getValor() > outro.getValor()) {
+			return 1;
+		}
+
+		return 0;
 	}
 
 }

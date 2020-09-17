@@ -30,11 +30,23 @@ public class Autor {
 		this.cpf = cpf;
 	}
 
-	public void mostrarDetalhes() {
-		System.out.println("Monstrando detalhes do autor:");
-		System.out.println("Nome: " + nome);
-		System.out.println("Email: " + email);
-		System.out.println("CPF: " + cpf);
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Monstrando detalhes do autor: \n");
+		sb.append("Nome: " + nome + "\n");
+		sb.append("Email: " + email + "\n");
+		sb.append("CPF: " + cpf + "\n");
+		return sb.toString();
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(!(obj instanceof Autor)) return false;
+		Autor outro = (Autor) obj;
+		return this.nome.equals(outro.nome);
+	}
+	
+	
 
 }
